@@ -38,11 +38,16 @@ export const tokenize = (lines: Array<string>): Array<Token> => {
   while (i < lines.length) {
     let line: string = lines[i].trim();
     if (line.startsWith('#')) {
+      // Atx-style heading.
+      // # A heading
       tokens.push(tokenizeAtx(line));
       i++;
       continue;
     }
     if (line.match(/^(-)+$|^(=)+$/) !== null && i > 0) {
+      // Setext-style heading.
+      // A heading
+      // ---
       const header = line[0] === '=' ? MD.Heading1 : MD.Heading2;
       tokens.push({ tag: header, content: lines[i - 1].trim() });
       i += i < lines.length - 1 ? 2 : 1; // don't skip the last line.
