@@ -77,3 +77,27 @@ describe('tokenizeAtx', () => {
     expect(tokens).toStrictEqual(expected);
   });
 });
+
+describe('tokenizeSetext', () => {
+  it('returns two headers with correct level.', () => {
+    const lines = ['header 1', '=', 'header 2', '-'];
+    let tokens = tokenize(lines);
+
+    let expected: Array<Token> = [
+      { tag: MD.Heading1, content: 'header 1' },
+      { tag: MD.Heading2, content: 'header 2' },
+    ];
+    expect(tokens).toStrictEqual(expected);
+  });
+
+  it('does not remove trailing hashes', () => {
+    const lines = ['header 1 ###', '=', 'header 2 ##', '-'];
+    let tokens = tokenize(lines);
+
+    let expected: Array<Token> = [
+      { tag: MD.Heading1, content: 'header 1 ###' },
+      { tag: MD.Heading2, content: 'header 2 ##' },
+    ];
+    expect(tokens).toStrictEqual(expected);
+  });
+});

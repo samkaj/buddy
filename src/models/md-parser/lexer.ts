@@ -42,6 +42,13 @@ export const tokenize = (lines: Array<string>): Array<Token> => {
       i++;
       continue;
     }
+    if (line.match(/^(-)+$|^(=)+$/) !== null && i > 0) {
+      const header = line[0] === '=' ? MD.Heading1 : MD.Heading2;
+      tokens.push({ tag: header, content: lines[i - 1].trim() });
+      i += i < lines.length - 1 ? 2 : 1; // don't skip the last line.
+      continue;
+    }
+    i++;
   }
   return tokens;
 };
