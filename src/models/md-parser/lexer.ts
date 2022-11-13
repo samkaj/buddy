@@ -4,13 +4,13 @@
  * @enum {number}
  */
 export enum MD {
+  Paragraph,
   Heading1,
   Heading2,
   Heading3,
   Heading4,
   Heading5,
   Heading6,
-  Paragraph,
   NotImplemented,
 }
 
@@ -46,6 +46,15 @@ export const tokenize = (lines: Array<string>): Array<Token> => {
   return tokens;
 };
 
+/**
+ * Tokenizes markdown headers in atx-style.
+ *
+ * @example
+ * ### Hello mom ###### -> {tag: MD.Header3, content: 'Hello mom'}
+ *
+ * @param {string} line A markdown formatted atx-style header.
+ * @returns {Token} A tokenized version of the line input.
+ */
 const tokenizeAtx = (line: string): Token => {
   let level = 0;
   while (line.charAt(level) === '#') {
@@ -54,24 +63,32 @@ const tokenizeAtx = (line: string): Token => {
   if (level > 6) {
     return { tag: MD.Paragraph, content: line.trim() };
   }
-  let content = line.substring(level);
-  let trailingHashes = 0;
-  if (content.endsWith('#')) {
-    trailingHashes++;
-    let pos = content.length - 1;
-    while (content[pos] === '#' && pos > 0) {
-      trailingHashes++;
-      pos--;
-    }
-    if (content[pos] === ' ') {
-      return {
-        tag: level - 1,
-        content: content.substring(0, trailingHashes).trim(),
-      };
-    }
-  }
   return {
-    tag: level - 1,
-    content: content.trim(),
+    tag: level,
+    content: removeTrailingHashes(line.trim().substring(level)),
   };
+};
+
+/**
+ * Removes trailing #'s from a line if they are not escaped.
+ *
+ * @param {string} line A string to be trimmed of #'s.
+ * @returns {string} The trimmed version of the inputted string.
+ */
+const removeTrailingHashes = (line: string): string => {
+  const hasTrailingHashes = line.match(/^.*( #+)$/) !== null;
+  if (hasTrailingHashes) {
+    let endPos = line.length - 1;
+    while (line.charAt(endPos) === '#') {
+      endPos--;
+    }
+    return line.substring(0, endPos).trim();
+  }
+
+  const hasEscapedHashes = line.match(/^.*( |\\#+)$/) !== null;
+  if (hasEscapedHashes) {
+    return line.replaceAll('\\', '').trim();
+  }
+
+  return line.trim();
 };

@@ -24,4 +24,56 @@ describe('tokenizeAtx', () => {
 
     expect(tokens).toStrictEqual(expected);
   });
+
+  it('removes trailing hashes for headers.', () => {
+    const lines = [
+      '# lots of hashes ###########',
+      '## one hash gone #',
+      '### fancy ###',
+      '#### ####',
+    ];
+
+    const tokens = tokenize(lines);
+
+    let expected: Array<Token> = [
+      { tag: MD.Heading1, content: 'lots of hashes' },
+      { tag: MD.Heading2, content: 'one hash gone' },
+      { tag: MD.Heading3, content: 'fancy' },
+      { tag: MD.Heading4, content: '' },
+    ];
+
+    expect(tokens).toStrictEqual(expected);
+  });
+
+  it('does not remove trailing hashes.', () => {
+    const lines = [
+      '# lots of hashes###########',
+      '# escaped \\###',
+      '## # #  ## #',
+    ];
+
+    const tokens = tokenize(lines);
+
+    let expected: Array<Token> = [
+      { tag: MD.Heading1, content: 'lots of hashes###########' },
+      { tag: MD.Heading1, content: 'escaped ###' },
+      { tag: MD.Heading2, content: '# #  ##' },
+    ];
+
+    expect(tokens).toStrictEqual(expected);
+  });
+
+  it('lexes more than 6 hashes as a paragraph.', () => {
+    const lines = ['####### exact', '########### more', '#######'];
+
+    const tokens = tokenize(lines);
+
+    let expected: Array<Token> = [
+      { tag: MD.Paragraph, content: '####### exact' },
+      { tag: MD.Paragraph, content: '########### more' },
+      { tag: MD.Paragraph, content: '#######' },
+    ];
+
+    expect(tokens).toStrictEqual(expected);
+  });
 });
