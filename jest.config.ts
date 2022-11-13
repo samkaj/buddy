@@ -5,6 +5,7 @@ const config: Config = {
   testEnvironment: 'node',
   testRegex: '/test/.*\\.(test|spec)?\\.(ts|tsx)$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  preset: 'ts-jest',
 };
 
 export default config;
