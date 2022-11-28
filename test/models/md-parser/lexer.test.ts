@@ -90,13 +90,39 @@ describe('tokenizeSetext', () => {
     expect(tokens).toStrictEqual(expected);
   });
 
-  it('does not remove trailing hashes', () => {
+  it('does not remove trailing hashes.', () => {
     const lines = ['header 1 ###', '=', 'header 2 ##', '-'];
     let tokens = tokenize(lines);
 
     let expected: Array<Token> = [
       { tag: MD.Heading1, content: 'header 1 ###' },
       { tag: MD.Heading2, content: 'header 2 ##' },
+    ];
+    expect(tokens).toStrictEqual(expected);
+  });
+});
+
+describe('newline from space', () => {
+  it('creates a new line', () => {
+    const lines = ['a paragraph  ', 'another paragraph   '];
+    let tokens = tokenize(lines);
+
+    let expected: Array<Token> = [
+      { tag: MD.Paragraph, content: 'a paragraph' },
+      { tag: MD.Newline, content: '' },
+      { tag: MD.Paragraph, content: 'another paragraph' },
+      { tag: MD.Newline, content: '' },
+    ];
+    expect(tokens).toStrictEqual(expected);
+  });
+
+  it('does not create a new line', () => {
+    const lines = ['# a header  ', '### another header    '];
+    let tokens = tokenize(lines);
+
+    let expected: Array<Token> = [
+      { tag: MD.Heading1, content: 'a header' },
+      { tag: MD.Heading3, content: 'another header' },
     ];
     expect(tokens).toStrictEqual(expected);
   });

@@ -11,6 +11,7 @@ export enum MD {
   Heading4,
   Heading5,
   Heading6,
+  Newline,
   NotImplemented,
 }
 
@@ -51,6 +52,12 @@ export const tokenize = (lines: Array<string>): Array<Token> => {
       const header = line[0] === '=' ? MD.Heading1 : MD.Heading2;
       tokens.push({ tag: header, content: lines[i - 1].trim() });
       i += i < lines.length - 1 ? 2 : 1; // don't skip the last line.
+      continue;
+    }
+    if (lines[i].endsWith('  ')) {
+      tokens.push({tag: MD.Paragraph, content: line.trim()});
+      tokens.push({tag: MD.Newline, content: ''});
+      i++;
       continue;
     }
     i++;
