@@ -12,6 +12,7 @@ export enum MD {
   Heading5,
   Heading6,
   Newline,
+  Blockquote,
   NotImplemented,
 }
 
@@ -23,7 +24,7 @@ export enum MD {
  */
 export type Token = {
   tag: MD;
-  content: string;
+  content: string | Token;
 };
 
 /**
@@ -55,11 +56,12 @@ export const tokenize = (lines: Array<string>): Array<Token> => {
       continue;
     }
     if (lines[i].endsWith('  ')) {
-      tokens.push({tag: MD.Paragraph, content: line.trim()});
+      tokens.push({tag: MD.Paragraph, content: line});
       tokens.push({tag: MD.Newline, content: ''});
       i++;
       continue;
     }
+    tokens.push({tag: MD.Paragraph, content: line});
     i++;
   }
   return tokens;

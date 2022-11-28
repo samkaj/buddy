@@ -103,7 +103,7 @@ describe('tokenizeSetext', () => {
 });
 
 describe('newline from space', () => {
-  it('creates a new line', () => {
+  it('creates a new line.', () => {
     const lines = ['a paragraph  ', 'another paragraph   '];
     let tokens = tokenize(lines);
 
@@ -116,7 +116,7 @@ describe('newline from space', () => {
     expect(tokens).toStrictEqual(expected);
   });
 
-  it('does not create a new line', () => {
+  it('does not create a new line.', () => {
     const lines = ['# a header  ', '### another header    '];
     let tokens = tokenize(lines);
 
