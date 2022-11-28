@@ -54,10 +54,16 @@ export const tokenize = (lines: Array<string>): Array<Token> => {
       tokens.push({ tag: header, content: lines[i - 1].trim() });
       i += i < lines.length - 1 ? 2 : 1; // don't skip the last line.
       continue;
+    } else if (
+      i + 1 < lines.length &&
+      lines[i + 1].match(/^(-)+$|^(=)+$/) !== null
+    ) {
+      i++;
+      continue;
     }
     if (lines[i].endsWith('  ')) {
-      tokens.push({tag: MD.Paragraph, content: line});
-      tokens.push({tag: MD.Newline, content: ''});
+      tokens.push({ tag: MD.Paragraph, content: line });
+      tokens.push({ tag: MD.Newline, content: '' });
       i++;
       continue;
     }
