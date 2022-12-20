@@ -39,7 +39,7 @@ export const tokenize = (lines: Array<string>): Array<Token> => {
     let i = 0;
     while (i < lines.length) {
         let line: string = lines[i].trim();
-        if (line.startsWith("#")) {
+        if (line.startsWith('#')) {
             // Atx-style heading.
             // # A heading
             tokens.push(tokenizeAtx(line));
@@ -50,7 +50,7 @@ export const tokenize = (lines: Array<string>): Array<Token> => {
             // Setext-style heading.
             // A heading
             // ---
-            const header = line[0] === "=" ? MD.Heading1 : MD.Heading2;
+            const header = line[0] === '=' ? MD.Heading1 : MD.Heading2;
             tokens.push({ tag: header, content: lines[i - 1].trim() });
             i += i < lines.length - 1 ? 2 : 1; // don't skip the last line.
             continue;
@@ -61,9 +61,9 @@ export const tokenize = (lines: Array<string>): Array<Token> => {
             i++;
             continue;
         }
-        if (lines[i].endsWith("  ")) {
+        if (lines[i].endsWith('  ')) {
             tokens.push({ tag: MD.Paragraph, content: line });
-            tokens.push({ tag: MD.Newline, content: "" });
+            tokens.push({ tag: MD.Newline, content: '' });
             i++;
             continue;
         }
@@ -84,7 +84,7 @@ export const tokenize = (lines: Array<string>): Array<Token> => {
  */
 const tokenizeAtx = (line: string): Token => {
     let level = 0;
-    while (line.charAt(level) === "#") {
+    while (line.charAt(level) === '#') {
         level++;
     }
     if (level > 6) {
@@ -106,7 +106,7 @@ const removeTrailingHashes = (line: string): string => {
     const hasTrailingHashes = line.match(/^.*( #+)$/) !== null;
     if (hasTrailingHashes) {
         let endPos = line.length - 1;
-        while (line.charAt(endPos) === "#") {
+        while (line.charAt(endPos) === '#') {
             endPos--;
         }
         return line.substring(0, endPos).trim();
@@ -114,7 +114,7 @@ const removeTrailingHashes = (line: string): string => {
 
     const hasEscapedHashes = line.match(/^.*( |\\#+)$/) !== null;
     if (hasEscapedHashes) {
-        return line.replaceAll("\\", "").trim();
+        return line.replaceAll('\\', '').trim();
     }
 
     return line.trim();

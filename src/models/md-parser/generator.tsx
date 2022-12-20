@@ -1,4 +1,4 @@
-import { MD, Token, tokenize } from "./lexer";
+import { MD, Token, tokenize } from './lexer';
 
 /**
  * Generates and returns HTML from input lines.
@@ -6,7 +6,7 @@ import { MD, Token, tokenize } from "./lexer";
  * @returns a list of `JSX.Elements`.
  */
 export const generate: any = (input: string) => {
-    const tags: Array<Token> = tokenize(input.split("\n"));
+    const tags: Array<Token> = tokenize(input.split('\n'));
     return tags.map(reactify);
 };
 

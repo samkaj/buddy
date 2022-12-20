@@ -1,6 +1,6 @@
-import { FormEvent, useState } from "react";
-import { generate } from "../models/md-parser/generator";
-import "./notes.scss";
+import { FormEvent, useState } from 'react';
+import { generate } from '../models/md-parser/generator';
+import './notes.scss';
 
 export const Notes = () => {
     const [output, setOutput] = useState<JSX.Element[]>();

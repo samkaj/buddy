@@ -1,6 +1,6 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Layout } from "./layout";
-import { Notes } from "./notes";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Layout } from './layout';
+import { Notes } from './notes';
 
 const App = () => {
     return (
