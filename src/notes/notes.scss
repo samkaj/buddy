@@ -31,3 +31,28 @@ textarea.input {
     color: $black;
     max-width: 40vw;
 }
+
+.filename {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    margin: 0 6pt 6pt 10vw;
+    padding: 8pt;
+    font-size: 20pt;
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+
+.filename:focus,
+.filename:hover {
+    border-radius: 8px;
+    border-color: $grey;
+    background-color: $white;
+}
+
+::placeholder,
+:-ms-input-placeholder,
+::-ms-input-placeholder {
+    color: $darkgrey;
+    opacity: 1;
+}
