@@ -100,6 +100,19 @@ describe('tokenizeSetext', () => {
         ];
         expect(tokens).toStrictEqual(expected);
     });
+
+    it('prioritizes atx over setext.', () => {
+        const lines = ['# header 1', '=', '## header 2', '-'];
+        let tokens = tokenize(lines);
+
+        let expected: Array<Token> = [
+            { tag: MD.Heading1, content: 'header 1' },
+            { tag: MD.Paragraph, content: '=' },
+            { tag: MD.Heading2, content: 'header 2' },
+            { tag: MD.Paragraph, content: '-' },
+        ];
+        expect(tokens).toStrictEqual(expected);
+    });
 });
 
 describe('newline from space', () => {

@@ -45,14 +45,13 @@ export const tokenize = (lines: Array<string>): Array<Token> => {
             tokens.push(tokenizeAtx(line));
             i++;
             continue;
-        }
-        if (line.match(/^(-)+$|^(=)+$/) !== null && i > 0) {
+        } if (line.match(/^(-)+$|^(=)+$/) !== null && i > 0 && !lines[i-1].startsWith('#')) {
             // Setext-style heading.
             // A heading
             // ---
             const header = line[0] === '=' ? MD.Heading1 : MD.Heading2;
             tokens.push({ tag: header, content: lines[i - 1].trim() });
-            i += i < lines.length - 1 ? 2 : 1; // don't skip the last line.
+            i++; // don't skip the last line.
             continue;
         } else if (
             i + 1 < lines.length &&
