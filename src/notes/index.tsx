@@ -11,7 +11,7 @@ export const Notes = () => {
 
     return (
         <>
-            <section className="editor">
+            <section className="editor shadow">
                 <textarea
                     className="input code"
                     spellCheck={false}

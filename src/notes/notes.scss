@@ -9,17 +9,15 @@
     height: 80vh;
     border-radius: 8px;
     border: 1px solid $grey;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-
-.editor > * {
-    padding: 8pt;
+    > * {
+        padding: 8pt;
+    }
 }
 
 textarea.input {
     flex-grow: 1;
     grid-area: input;
-    background-color: $grey;
+    background-color: $lightgrey;
     color: $black;
     outline: none;
     border: none;
@@ -31,4 +29,5 @@ textarea.input {
     background-color: $white;
     border-radius: 0 8px 8px 0;
     color: $black;
+    max-width: 40vw;
 }
