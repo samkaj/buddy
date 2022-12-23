@@ -1,11 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500&family=Secular+One&display=swap');
 
-$black: #323232;
-$white: #f7fff7;
-$grey: #ebebeb;
-$darkgrey: #b2b2b2;
-$primary: #3f3f3f;
-$secondary: #ffa9a3;
+$black: #0f0a0a;
+$white: #f7f3f3;
+
+$grey: #e1dbd8;
+$lightgrey: #F5EFED;
+$darkgrey: #bfbab7;
+
+$primary: #7e8d85;
+$primaryvar: #b3bfb8;
+
+$secondary: #a2e3c4;
+$secondaryvar: #c0ecd7;
 
 html {
     background-color: $white;
@@ -42,4 +48,12 @@ h6 {
 
 textarea {
     resize: none;
+}
+
+p {
+    overflow-wrap: break-word;
+}
+
+.shadow {
+    box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
 }
