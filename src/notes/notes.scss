@@ -30,6 +30,25 @@ textarea.input {
     border-radius: 0 8px 8px 0;
     color: $black;
     max-width: 40vw;
+
+    code, blockquote {
+        padding: 8pt;
+        width: calc(100% - 16pt);
+        margin: 4pt 0 4pt 0;
+    }
+
+    code {
+        display: block;
+        background-color: $lightgrey;
+        border: 1px solid $grey;
+        border-radius: 8px;
+    }
+
+    blockquote {
+        border-left: 2px solid $grey;
+        background-color: $lightgrey;
+        color: $blackvar;
+    }
 }
 
 .filename {
