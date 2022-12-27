@@ -1,13 +1,13 @@
 import { FocusEvent, FormEvent, useState } from 'react';
-import { generate } from '../models/md-parser/generator';
 import './notes.scss';
+import ReactMarkdown from 'react-markdown';
 
 export const Notes = () => {
-    const [output, setOutput] = useState<JSX.Element[]>();
+    const [output, setOutput] = useState<string>('');
     const [noteName, setNoteName] = useState<string>('New note');
 
     const onTextInput = (e: FormEvent<HTMLTextAreaElement>) => {
-        setOutput(generate(e.currentTarget.value));
+        setOutput(e.currentTarget.value);
     };
 
     const onFilenameChange = (e: FocusEvent<HTMLInputElement>) => {
@@ -33,7 +33,9 @@ export const Notes = () => {
                     tabIndex={-1}
                     id="inputText"
                 ></textarea>
-                <div className="output">{output}</div>
+                <div className="output">
+                    <ReactMarkdown children={output} />
+                </div>
             </section>
         </>
     );
