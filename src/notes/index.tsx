@@ -11,7 +11,8 @@ export const Notes = () => {
     };
 
     const onFilenameChange = (e: FocusEvent<HTMLInputElement>) => {
-        setNoteName(e.currentTarget.value);
+        if (e.currentTarget.value === '') setNoteName('New note');
+        else setNoteName(e.currentTarget.value);
     };
 
     return (
