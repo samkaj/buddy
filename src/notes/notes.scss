@@ -1,6 +1,6 @@
 @import '../main.scss';
 
-.editor {
+#editor {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas: 'input output';
@@ -24,21 +24,22 @@ textarea.input {
     border-radius: 8px 0 0 8px;
 }
 
-.output {
+#output {
     grid-area: output;
     background-color: $white;
     border-radius: 0 8px 8px 0;
     color: $black;
     max-width: 40vw;
+    padding: 0 24pt 0 24pt;
 
-    code, blockquote {
+    blockquote {
         padding: 8pt;
         width: calc(100% - 16pt);
         margin: 4pt 0 4pt 0;
     }
 
     code {
-        display: block;
+        padding: 0 2pt 0 2pt;
         background-color: $lightgrey;
         border: 1px solid $grey;
         border-radius: 8px;
@@ -49,9 +50,45 @@ textarea.input {
         background-color: $lightgrey;
         color: $blackvar;
     }
+
+    > * {
+        margin-top: 6pt;
+    }
+
+    a {
+        color: $primary;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    h1 {
+        font-size: 24pt;
+        margin-top: 12pt;
+    }
+
+    h1,
+    h2 {
+        width: 100%;
+        padding-bottom: 4pt;
+        border-bottom: 1px solid $grey;
+    }
+
+    pre code {
+        display: block;
+        width: calc(100% - 16pt);
+        padding: 8pt;
+    }
 }
 
-.filename {
+#filename {
     outline: none;
     border: none;
     background-color: transparent;
@@ -62,8 +99,8 @@ textarea.input {
     border: 1px solid transparent;
 }
 
-.filename:focus,
-.filename:hover {
+#filename:focus,
+#filename:hover {
     border-radius: 8px;
     border-color: $grey;
     background-color: $white;

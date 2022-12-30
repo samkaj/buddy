@@ -22,22 +22,23 @@ export const Notes = () => {
                 name="Note name"
                 id="filename"
                 placeholder={noteName}
-                className="filename"
                 onBlur={onFilenameChange}
+                aria-label="filename-input"
             />
-            <section className="editor shadow">
+            <section className="shadow" id="editor">
                 <textarea
-                    className="input code"
+                    className="code"
                     spellCheck={false}
                     name="markdown"
                     onInput={onTextInput}
                     tabIndex={-1}
-                    id="inputText"
+                    id="input"
                 ></textarea>
-                <div className="output">
+                <div itemID="output">
                     <ReactMarkdown children={output} />
                 </div>
             </section>
+            <button onClick={() => console.log(output)}>Click me</button>
         </>
     );
 };
