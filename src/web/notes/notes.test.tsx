@@ -11,7 +11,7 @@ const setup = () => {
     const utils = render(<Notes />);
     const fileNameInput = utils.getByLabelText('filename-input');
     return {
-        input: fileNameInput,
+        fileNameInput,
         ...utils,
     };
 };
@@ -32,8 +32,8 @@ it('finds the New Note placeholder', async () => {
 });
 
 it('re-enters the New Note placeholder if input becomes empty', () => {
-    const { input } = setup();
-    userEvent.type(input, 'a');
-    userEvent.clear(input);
+    const { fileNameInput } = setup();
+    userEvent.type(fileNameInput, 'a');
+    userEvent.clear(fileNameInput);
     expect(screen.getByPlaceholderText('New note')).toBeInTheDocument();
 });

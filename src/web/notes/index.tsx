@@ -18,23 +18,23 @@ export const Notes = () => {
     return (
         <>
             <input
-                type="text"
-                name="Note name"
-                id="filename"
+                type='text'
+                name='Note name'
+                id='filename'
                 placeholder={noteName}
                 onBlur={onFilenameChange}
-                aria-label="filename-input"
+                aria-label='filename-input'
             />
-            <section className="shadow" id="editor">
+            <section className='shadow' id='editor'>
                 <textarea
-                    className="code"
+                    className='code'
                     spellCheck={false}
-                    name="markdown"
+                    name='markdown'
                     onInput={onTextInput}
                     tabIndex={-1}
-                    id="input"
+                    id='input'
                 ></textarea>
-                <div itemID="output">
+                <div itemID='output'>
                     <ReactMarkdown children={output} />
                 </div>
             </section>

@@ -8,8 +8,8 @@ $grey: #e1dbd8;
 $lightgrey: #f5efed;
 $darkgrey: #bfbab7;
 
-$primary: #7e8d85;
-$primaryvar: #b3bfb8;
+$primary: #449e73;
+$primaryvar: #d6f0e3;
 
 $secondary: #a2e3c4;
 $secondaryvar: #c0ecd7;
@@ -28,10 +28,11 @@ html {
 
 ::-moz-selection,
 ::selection {
-    background: $primaryvar;
+    background: $grey;
 }
 
-.code, code {
+.code,
+code {
     font-family: 'Fira Code', monospace;
 }
 

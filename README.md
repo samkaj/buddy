@@ -24,3 +24,9 @@ npm run dev
 -   [ ] Create flash cards to rehearse for tests and exams.
 -   [ ] TODO lists to keep track of your studies.
 -   [ ] _Calendar to not miss any assignments or exams._
+
+## Structure
+
+-   `web`: React frontend.
+-   `server`: MongoDB with Express. Not started.
+-   `common`: API used by both server and web. Not started.
