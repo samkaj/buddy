@@ -38,7 +38,6 @@ export const Notes = () => {
                     <ReactMarkdown children={output} />
                 </div>
             </section>
-            <button onClick={() => console.log(output)}>Click me</button>
         </>
     );
 };
