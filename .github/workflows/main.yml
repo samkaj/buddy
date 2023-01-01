@@ -19,17 +19,18 @@ jobs:
             matrix:
                 node-version: [16.x, 18.x]
 
+        defaults:
+            run:
+                working-directory: ./src/web
+
         steps:
             - uses: actions/checkout@v3
-                    working-directory: ./src/web
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v3
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'npm'
-                working-directory: ./src/web
             - run: |
                   npm ci
                   npm run build --if-present
                   npm test
-                working-directory: ./src/web
