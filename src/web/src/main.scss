@@ -1,22 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500&family=Secular+One&display=swap');
-
-$black: #0f0a0a;
-$blackvar: #353030;
-$white: #f7f3f3;
-
-$grey: #e1dbd8;
-$lightgrey: #f5efed;
-$darkgrey: #bfbab7;
-
-$primary: #449e73;
-$primaryvar: #d6f0e3;
-
-$secondary: #a2e3c4;
-$secondaryvar: #c0ecd7;
+@import 'sass/colors.scss';
 
 html {
-    background-color: $white;
-    color: $black;
+    background-color: theme-color(bg);
+    color: theme-color(fg);
 }
 
 * {
@@ -28,7 +15,7 @@ html {
 
 ::-moz-selection,
 ::selection {
-    background: $grey;
+    background: theme-color(border);
 }
 
 .code,

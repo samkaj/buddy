@@ -1,0 +1,32 @@
+$light: (
+    fg: #1e1e24,
+    fg-variant: #414542,
+    bg: #fcfcfc,
+    bg-variant: #ffffff,
+    border: #e7eeec,
+    primary: #89a9a0,
+    primary-variant: #78a59a,
+    secondary: #959eef,
+    secondary-variant: #6874e8,
+    gradient: #ffffff,
+);
+
+$dark: (
+    fg: #ffffff,
+    fg-variant: #f3f7f6,
+    bg: #1e1e24,
+    bg-variant: #1e1e24,
+    border: #414542,
+    primary: #89a9a0,
+    primary-variant: #78a59a,
+    secondary: #959eef,
+    secondary-variant: #6874e8,
+    gradient: #ffffff,
+);
+
+$theme: $dark;
+
+// Helper to get the right color based in the applied theme.
+@function theme-color($key) {
+    @return map-get($theme, $key);
+}

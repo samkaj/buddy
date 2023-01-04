@@ -34,7 +34,7 @@ export const Notes = () => {
                     tabIndex={-1}
                     id='input'
                 ></textarea>
-                <div itemID='output'>
+                <div id='output'>
                     <ReactMarkdown children={output} />
                 </div>
             </section>

@@ -1,4 +1,5 @@
 @import '../main.scss';
+@import '../sass/colors.scss';
 
 #editor {
     display: grid;
@@ -8,7 +9,6 @@
     width: 80vw;
     height: 80vh;
     border-radius: 8px;
-    border: 1px solid $grey;
     > * {
         padding: 8pt;
     }
@@ -17,20 +17,24 @@
 textarea#input {
     flex-grow: 1;
     grid-area: input;
-    background-color: $lightgrey;
-    color: $black;
+    background-color: theme-color(bg-variant);
+    color: theme-color(fg);
     outline: none;
     border: none;
     border-radius: 8px 0 0 8px;
+    border: solid theme-color(border);
+    border-width: 1px 0.5px 1px 1px;
 }
 
 #output {
     grid-area: output;
-    background-color: $white;
+    background-color: theme-color(bg);
     border-radius: 0 8px 8px 0;
-    color: $black;
+    color: theme-color(fg);
     max-width: 40vw;
-    padding: 0 24pt 0 24pt;
+    padding: 12pt 24pt 12pt 24pt;
+    border: solid theme-color(border);
+    border-width: 1px 1px 1px 0.5px;
 
     blockquote {
         padding: 8pt;
@@ -40,23 +44,24 @@ textarea#input {
 
     code {
         padding: 0 2pt 0 2pt;
-        background-color: $lightgrey;
-        border: 1px solid $grey;
+        background-color: theme-color(border);
+        border: 1px solid theme-color(bg-variant);
         border-radius: 8px;
     }
 
     blockquote {
-        border-left: 2px solid $grey;
-        background-color: $lightgrey;
-        color: $blackvar;
+        border-left: 2px solid theme-color(border);
+        background-color: theme-color(bg-variant);
+        color: theme-color(fg-variant);
     }
 
     > * {
         margin-top: 6pt;
     }
 
-    a {
-        color: $primary;
+    a,
+    a:visited {
+        color: theme-color(primary);
         text-decoration: none;
     }
 
@@ -78,7 +83,7 @@ textarea#input {
     h2 {
         width: 100%;
         padding-bottom: 4pt;
-        border-bottom: 1px solid $grey;
+        border-bottom: 1px solid theme-color(border);
     }
 
     pre code {
@@ -97,18 +102,19 @@ textarea#input {
     font-size: 20pt;
     font-weight: 600;
     border: 1px solid transparent;
+    color: theme-color(fg);
 }
 
 #filename:focus,
 #filename:hover {
     border-radius: 8px;
-    border-color: $grey;
-    background-color: $white;
+    border-color: theme-color(border);
+    background-color: theme-color(bg-variant);
 }
 
 ::placeholder,
 :-ms-input-placeholder,
 ::-ms-input-placeholder {
-    color: $darkgrey;
+    color: theme-color(fg-variant);
     opacity: 1;
 }
