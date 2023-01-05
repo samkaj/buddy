@@ -50,7 +50,7 @@
         }
     }
 
-    a#toggle-theme {
+    button#toggle-theme {
         font-size: 18pt;
         float: right;
         text-align: center;
@@ -58,5 +58,6 @@
         margin-right: 10pt;
         cursor: pointer;
         user-select: none;
+        background-color: transparent;
     }
 }

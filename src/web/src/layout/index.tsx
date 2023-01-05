@@ -42,9 +42,9 @@ export const Layout = () => {
                         </button>
                     </li>
                     <li>
-                        <a id='toggle-theme' onClick={swapTheme}>
+                        <button id='toggle-theme' onClick={swapTheme}>
                             {themeIcon}
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </nav>
