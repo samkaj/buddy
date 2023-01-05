@@ -17,23 +17,23 @@
 textarea#input {
     flex-grow: 1;
     grid-area: input;
-    background-color: theme-color(bg-variant);
-    color: theme-color(fg);
+    background-color: var(--bg-variant);
+    color: var(--fg);
     outline: none;
     border: none;
     border-radius: 8px 0 0 8px;
-    border: solid theme-color(border);
+    border: solid var(--border);
     border-width: 1px 0.5px 1px 1px;
 }
 
 #output {
     grid-area: output;
-    background-color: theme-color(bg);
+    background-color: var(--bg-variant);
     border-radius: 0 8px 8px 0;
-    color: theme-color(fg);
+    color: var(--fg);
     max-width: 40vw;
     padding: 12pt 24pt 12pt 24pt;
-    border: solid theme-color(border);
+    border: solid var(--border);
     border-width: 1px 1px 1px 0.5px;
 
     blockquote {
@@ -44,15 +44,15 @@ textarea#input {
 
     code {
         padding: 0 2pt 0 2pt;
-        background-color: theme-color(border);
-        border: 1px solid theme-color(bg-variant);
+        background-color: var(--border);
+        border: 1px solid var(--bg-variant);
         border-radius: 8px;
     }
 
     blockquote {
-        border-left: 2px solid theme-color(border);
-        background-color: theme-color(bg-variant);
-        color: theme-color(fg-variant);
+        border-left: 2px solid var(--border);
+        background-color: var(--bg-variant);
+        color: var(--fg-variant);
     }
 
     > * {
@@ -61,7 +61,7 @@ textarea#input {
 
     a,
     a:visited {
-        color: theme-color(primary);
+        color: var(--primary);
         text-decoration: none;
     }
 
@@ -83,7 +83,7 @@ textarea#input {
     h2 {
         width: 100%;
         padding-bottom: 4pt;
-        border-bottom: 1px solid theme-color(border);
+        border-bottom: 1px solid var(--border);
     }
 
     pre code {
@@ -102,19 +102,19 @@ textarea#input {
     font-size: 20pt;
     font-weight: 600;
     border: 1px solid transparent;
-    color: theme-color(fg);
+    color: var(--fg);
 }
 
 #filename:focus,
 #filename:hover {
     border-radius: 8px;
-    border-color: theme-color(border);
-    background-color: theme-color(bg-variant);
+    border-color: var(--border);
+    background-color: var(--bg-variant);
 }
 
 ::placeholder,
 :-ms-input-placeholder,
 ::-ms-input-placeholder {
-    color: theme-color(fg-variant);
+    color: var(--fg-variant);
     opacity: 1;
 }

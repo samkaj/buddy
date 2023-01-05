@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500&family=Secular+One&display=swap');
 @import 'sass/colors.scss';
 
-html {
-    background-color: theme-color(bg);
-    color: theme-color(fg);
+body {
+    background-color: var(--bg);
+    color: var(--fg);
 }
 
 * {
@@ -15,7 +15,7 @@ html {
 
 ::-moz-selection,
 ::selection {
-    background: theme-color(border);
+    background: var(--border);
 }
 
 .code,
@@ -44,5 +44,14 @@ p {
 }
 
 .shadow {
-    box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
+    box-shadow: var(--shadow) 0px 8px 24px;
+}
+
+button,
+input[type='button'] {
+    border-radius: 8px;
+    padding: 4pt 8pt;
+    outline: none;
+    border: none;
+    font-size: 10pt;
 }

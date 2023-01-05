@@ -7,7 +7,8 @@
         margin-bottom: 10pt;
         padding: 10pt 10vw 0 10vw;
         height: 32pt;
-        border-bottom: 1px theme-color(border) solid;
+        border-bottom: 1px var(--border) solid;
+        background-color: var(--bg-variant);
     }
 
     li {
@@ -17,7 +18,7 @@
 
     a,
     a:visited {
-        color: theme-color(fg);
+        color: var(--fg);
         text-decoration: none;
         line-height: 24pt;
         padding: 8pt;
@@ -28,6 +29,34 @@
     }
 
     a:hover {
-        opacity: 0.6;
+        color: var(--primary);
+    }
+
+    #login-btn {
+        display: block;
+        background-color: var(--primary);
+        float: right;
+        border-radius: 8px;
+        padding: 0.5pt;
+        > a {
+            color: #fff;
+        }
+    }
+
+    #login-btn:hover {
+        background-color: var(--primary-variant);
+        > a {
+            color: #fff;
+        }
+    }
+
+    a#toggle-theme {
+        font-size: 18pt;
+        float: right;
+        text-align: center;
+        padding: 0.5pt;
+        margin-right: 10pt;
+        cursor: pointer;
+        user-select: none;
     }
 }

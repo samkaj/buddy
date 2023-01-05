@@ -1,32 +1,30 @@
-$light: (
-    fg: #1e1e24,
-    fg-variant: #414542,
-    bg: #fcfcfc,
-    bg-variant: #ffffff,
-    border: #e7eeec,
-    primary: #89a9a0,
-    primary-variant: #78a59a,
-    secondary: #959eef,
-    secondary-variant: #6874e8,
-    gradient: #ffffff,
-);
+:root {
+    --fg: #1e1e24;
+    --fg-variant: #414542;
+    --fg-lighter: #292931;
+    --bg: #fcfcfc;
+    --bg-variant: #ffffff;
+    --bg-lighter: #f3f2f2;
+    --border: #e7eeec;
+    --primary: #009ffd;
+    --primary-variant: #21aaf9;
+    --secondary: #959eef;
+    --secondary-variant: #6874e8;
+    --gradient: #ffffff;
+    --shadow: rgba(149, 157, 165, 0.1);
+}
 
-$dark: (
-    fg: #ffffff,
-    fg-variant: #f3f7f6,
-    bg: #1e1e24,
-    bg-variant: #1e1e24,
-    border: #414542,
-    primary: #89a9a0,
-    primary-variant: #78a59a,
-    secondary: #959eef,
-    secondary-variant: #6874e8,
-    gradient: #ffffff,
-);
-
-$theme: $dark;
-
-// Helper to get the right color based in the applied theme.
-@function theme-color($key) {
-    @return map-get($theme, $key);
+.dark {
+    --fg: #ffffff;
+    --fg-variant: #f3f7f6;
+    --fg-lighter: #dbe0df;
+    --bg: #1e1e24;
+    --bg-variant: #222228;
+    --border: #414542;
+    --primary: #009ffd;
+    --primary-variant: #21aaf9;
+    --secondary: #959eef;
+    --secondary-variant: #6874e8;
+    --gradient: #ffffff;
+    --shadow: #00000000;
 }
