@@ -20,12 +20,13 @@
     a:visited {
         color: var(--fg);
         text-decoration: none;
-        line-height: 24pt;
+        line-height: 25pt;
         padding: 8pt;
         text-align: center;
         border-radius: 6px;
         transition: 0.3s;
         font-weight: 400;
+        font-size: 11pt;
     }
 
     a:hover {
@@ -39,14 +40,18 @@
         border-radius: 8px;
         padding: 0.5pt;
         > a {
-            color: #fff;
+            font-size: 10pt;
+            color: var(--primary-contrast);
+            line-height: 20pt;
         }
+        border: 1.5px transparent solid;
     }
 
     #login-btn:hover {
-        background-color: var(--primary-variant);
+        background-color: var(--primary-contrast);
+        border-color: var(--primary);
         > a {
-            color: #fff;
+            color: var(--primary);
         }
     }
 
