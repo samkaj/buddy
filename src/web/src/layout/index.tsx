@@ -38,7 +38,7 @@ export const Layout = () => {
                     </li>
                     <li>
                         <button id='login-btn'>
-                            <Link to='/login'>Sign in</Link>
+                            <Link to='/sign-in'>Sign in</Link>
                         </button>
                     </li>
                     <li>

@@ -1,0 +1,84 @@
+@import '../sass/colors.scss';
+
+#sign-in-wrapper {
+    display: grid;
+    height: calc(100vh - 42pt);
+    grid-template-columns: 2fr 1fr;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    padding-top: 42pt;
+    > * {
+        padding-left: 30%;
+        padding-top: 20pt;
+    }
+}
+#form {
+    display: block;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    width: 12vw;
+    text-align: center;
+
+    padding: 10pt;
+    padding-bottom: 0;
+    border-radius: 8px;
+
+    > * {
+        margin: auto;
+        margin-bottom: 12pt;
+        text-align: center;
+    }
+
+    button {
+        background-color: var(--bg-lighter);
+        color: var(--fg-lighter);
+        height: 30pt;
+        width: 100%;
+    }
+
+    button:hover {
+        background-color: var(--primary);
+        cursor: pointer;
+    }
+
+    p {
+        color: var(--grey);
+    }
+
+    .or-line {
+        text-align: center;
+        overflow: hidden;
+        font-size: 11pt;
+        color: var(--fg);
+    }
+
+    .or-line::before,
+    .or-line::after {
+        background-color: var(--border);
+        content: '';
+        display: inline-block;
+        height: 1px;
+        position: relative;
+        vertical-align: middle;
+        width: 50%;
+    }
+
+    .or-line::before {
+        right: 0.5em;
+        margin-left: -50%;
+    }
+
+    .or-line::after {
+        left: 0.5em;
+        margin-right: -50%;
+    }
+}
+
+#info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-column: 2 2;
+}
