@@ -1,0 +1,33 @@
+{
+  "name": "buddy-server",
+  "version": "1.0.0",
+  "description": "The backend for buddy.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon dist/index.js",
+    "watch": "tsc -w",
+    "start": "tsc && node dist/index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samkaj/buddy.git"
+  },
+  "author": "samkaj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samkaj/buddy/issues"
+  },
+  "homepage": "https://github.com/samkaj/buddy#readme",
+  "dependencies": {
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "reflect-metadata": "^0.1.13",
+    "ts-dotenv": "^0.9.0",
+    "typeorm": "^0.3.11",
+    "typescript": "^4.9.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18"
+  }
+}
