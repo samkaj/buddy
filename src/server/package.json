@@ -7,7 +7,9 @@
     "dev": "nodemon dist/index.js",
     "watch": "tsc -w",
     "start": "tsc && node dist/index.js",
-    "test": "jest"
+    "test": "jest",
+    "migrate:gen": "typeorm-ts-node-commonjs migration:generate src/migrations/refactor -d src/data-source.ts",
+    "migrate:run": "typeorm-ts-node-commonjs migration:run -d src/data-source.ts"
   },
   "repository": {
     "type": "git",
@@ -20,10 +22,11 @@
   },
   "homepage": "https://github.com/samkaj/buddy#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "nodemon": "^2.0.20",
     "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
-    "ts-dotenv": "^0.9.0",
+    "ts-node": "^10.9.1",
     "typeorm": "^0.3.11",
     "typescript": "^4.9.4"
   },

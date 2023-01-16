@@ -1,6 +1,10 @@
-import { load } from 'ts-dotenv';
+require('dotenv').config();
 import 'reflect-metadata';
-export const env = load({
-    POSTGRES_USER: String,
-    POSTGRES_PASS: String,
-});
+
+import { PostgresDataSource } from './data-source';
+
+PostgresDataSource.initialize()
+    .then(() => {
+        // Database stuff happens here.
+    })
+    .catch((error) => console.log(error));
