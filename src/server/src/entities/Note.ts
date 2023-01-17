@@ -7,16 +7,16 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
-import { Users } from './Users';
+import { User } from './User';
 
 @Entity()
 export class Note {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne(() => Users)
+    @ManyToOne(() => User)
     @JoinColumn()
-    owner: Users;
+    owner: User;
 
     @Column()
     title: string;
