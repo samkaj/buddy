@@ -5,9 +5,10 @@ import {
     JoinColumn,
     ManyToOne,
     PrimaryGeneratedColumn,
+    Repository,
     UpdateDateColumn,
 } from 'typeorm';
-import { User } from './User';
+import { Users } from './Users';
 import psqlDataSource from '../data-source';
 
 @Entity()
@@ -15,9 +16,9 @@ export class Note {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @ManyToOne(() => User)
+    @ManyToOne(() => Users)
     @JoinColumn()
-    owner: User;
+    owner: Users;
 
     @Column()
     title: string;
@@ -32,25 +33,29 @@ export class Note {
     updatedAt: Date;
 }
 
-const noteRepo = psqlDataSource.getRepository(Note);
+const noteRepo = (): Repository<Note> => psqlDataSource.getRepository(Note);
 
 /** Create a new note */
-export const newNote = async (owner: User, title: string, markdown: string) => {
+export const newNote = async (
+    owner: Users,
+    title: string,
+    markdown: string
+) => {
     const note = new Note();
     note.owner = owner;
     note.title = title;
     note.markdown = markdown;
-    await noteRepo.save(note);
+    await noteRepo().save(note);
 };
 
 /** Get a note by its ID */
 export const getNote = async (id: string): Promise<Note | null> => {
-    return await noteRepo.findOneBy({ id });
+    return await noteRepo().findOneBy({ id });
 };
 
 /** Get all notes by a user */
-export const getNotesByUser = async (user: User): Promise<Note[]> => {
-    return await noteRepo.find({
+export const getNotesByUser = async (user: Users): Promise<Note[]> => {
+    return await noteRepo().find({
         relations: {
             owner: true,
         },
@@ -68,7 +73,7 @@ export const setNoteTitle = async (
     title: string
 ): Promise<void> => {
     note.title = title;
-    await noteRepo.save(note);
+    await noteRepo().save(note);
 };
 
 /** Set a note's markdown */
@@ -77,11 +82,11 @@ export const setNoteMarkdown = async (
     markdown: string
 ): Promise<void> => {
     note.markdown = markdown;
-    await noteRepo.save(note);
+    await noteRepo().save(note);
 };
 
 /** Delete a note */
 export const deleteNote = async (note: Note): Promise<void> => {
     const exists = (await getNote(note.id)) != null; // Check if the note exists
-    if (exists) await noteRepo.remove(note);
+    if (exists) await noteRepo().remove(note);
 };

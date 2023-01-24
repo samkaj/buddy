@@ -6,6 +6,8 @@ import {
     OneToMany,
     PrimaryColumn,
     PrimaryGeneratedColumn,
+    Repository,
+    Unique,
     UpdateDateColumn,
 } from 'typeorm';
 
@@ -13,8 +15,9 @@ import bcrypt from 'bcrypt';
 import psqlDataSource from '../data-source';
 import { Note } from './Note';
 
+@Unique(['email', 'username'])
 @Entity()
-export class User {
+export class Users {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -42,7 +45,7 @@ export class User {
     }
 }
 
-const userRepo = psqlDataSource.getRepository(User);
+const userRepo = (): Repository<Users> => psqlDataSource.getRepository(Users);
 
 /** Create a new user */
 export const newUser = async (
@@ -50,23 +53,24 @@ export const newUser = async (
     username: string,
     password: string
 ): Promise<void> => {
-    const user = new User();
+    const user = new Users();
+    console.log('new user');
     user.email = email;
     user.username = username;
     user.password = password;
-    await userRepo.save(user);
+    await userRepo().save(user);
 };
 
 /** Get a user by their email */
-export const getUser = async (email: string): Promise<User | null> => {
-    return await userRepo.findOneBy({
+export const getUser = async (email: string): Promise<Users | null> => {
+    return await userRepo().findOneBy({
         email,
     });
 };
 
 /** Get a user by their ID */
-export const getUserById = async (id: string): Promise<User | null> => {
-    return await userRepo.findOneBy({
+export const getUserById = async (id: string): Promise<Users | null> => {
+    return await userRepo().findOneBy({
         id,
     });
 };
@@ -74,16 +78,23 @@ export const getUserById = async (id: string): Promise<User | null> => {
 /** Get a user by their username */
 export const getUserByUsername = async (
     username: string
-): Promise<User | null> => {
-    return await userRepo.findOneBy({
+): Promise<Users | null> => {
+    return await userRepo().findOneBy({
         username,
+    });
+};
+
+/** Get a user by their email */
+export const getUserByEmail = async (email: string): Promise<Users | null> => {
+    return await userRepo().findOneBy({
+        email,
     });
 };
 
 /** Delete a user by their ID */
 export const deleteUser = async (id: string) => {
     const user = await getUserById(id);
-    if (user) await userRepo.remove(user);
+    if (user) await userRepo().remove(user);
     else throw new Error('User not found');
 };
 
@@ -95,7 +106,7 @@ export const updatePassword = async (
     const user = await getUserById(id);
     if (user) {
         user.password = password;
-        await userRepo.save(user);
+        await userRepo().save(user);
     } else throw new Error('User not found');
 };
 
@@ -107,6 +118,6 @@ export const updateUsername = async (
     const user = await getUserById(id);
     if (user) {
         user.username = username;
-        await userRepo.save(user);
+        await userRepo().save(user);
     } else throw new Error('User not found');
 };
