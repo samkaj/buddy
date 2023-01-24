@@ -1,3 +1,4 @@
+require('dotenv').config();
 import { DataSource } from 'typeorm';
 
 const psqlDataSource = new DataSource({
@@ -7,6 +8,7 @@ const psqlDataSource = new DataSource({
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASS,
     database: 'buddy',
+    synchronize: true,
     entities: ['src/entities/**/*{.js,.ts}'],
     migrations: ['src/migrations/**/*{.js,.ts}'],
 });
