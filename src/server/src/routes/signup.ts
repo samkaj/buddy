@@ -2,27 +2,24 @@ import { getUserByEmail, getUserByUsername, newUser } from '../entities/Users';
 import { Router } from 'express';
 export const signupRouter = Router();
 
-/**
- * Create a new user account.
- */
-signupRouter.post('/signup', async (req, res): Promise<void> => {
-    await getUserByUsername(req.body.username).then((user) => {
+import asyncHandler from 'express-async-handler';
+
+signupRouter.post(
+    '/signup',
+    asyncHandler(async (req, res): Promise<any> => {
+        const user = await getUserByUsername(req.body.username);
         if (user) {
-            res.status(400).send({
+            return res.status(400).send({
                 message: 'Username is already in use.',
             });
-            return;
         }
-    });
-
-    await getUserByEmail(req.body.email).then((user) => {
-        if (user) {
-            res.status(400).send({
+        const userByEmail = await getUserByEmail(req.body.email);
+        if (userByEmail) {
+            return res.status(400).send({
                 message: 'Email is already in use.',
             });
-            return;
         }
-    });
-
-    await newUser(req.body.email, req.body.username, req.body.password);
-});
+        await newUser(req.body.email, req.body.username, req.body.password);
+        return res.status(200).send({ message: 'User created successfully!' });
+    })
+);
