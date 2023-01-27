@@ -27,7 +27,7 @@ export class Users {
     @Column({ length: 40 })
     username: string;
 
-    @Column('text')
+    @Column('text', { select: false })
     password: string;
 
     @OneToMany(() => Note, (note) => note.owner)
@@ -54,7 +54,6 @@ export const newUser = async (
     password: string
 ): Promise<void> => {
     const user = new Users();
-    console.log('new user');
     user.email = email;
     user.username = username;
     user.password = password;
@@ -63,39 +62,51 @@ export const newUser = async (
 
 /** Get a user by their email */
 export const getUser = async (email: string): Promise<Users | null> => {
-    return await userRepo().findOneBy({
+    const user = await userRepo().findOneBy({
         email,
     });
+    return user;
 };
 
 /** Get a user by their ID */
 export const getUserById = async (id: string): Promise<Users | null> => {
-    return await userRepo().findOneBy({
+    const user = await userRepo().findOneBy({
         id,
     });
+    return user;
 };
 
 /** Get a user by their username */
 export const getUserByUsername = async (
     username: string
 ): Promise<Users | null> => {
-    return await userRepo().findOneBy({
+    const user = await userRepo().findOneBy({
         username,
     });
+    return user;
+};
+
+/** Check if a user exists by their email */
+export const userExists = async (email: string): Promise<boolean> => {
+    const user = await userRepo().findOneBy({
+        email,
+    });
+    if (user) return true;
+    else return false;
 };
 
 /** Get a user by their email */
 export const getUserByEmail = async (email: string): Promise<Users | null> => {
-    return await userRepo().findOneBy({
+    const user = await userRepo().findOneBy({
         email,
     });
+    return user;
 };
 
 /** Delete a user by their ID */
 export const deleteUser = async (id: string) => {
     const user = await getUserById(id);
     if (user) await userRepo().remove(user);
-    else throw new Error('User not found');
 };
 
 /** Update a user's password */
@@ -107,7 +118,7 @@ export const updatePassword = async (
     if (user) {
         user.password = password;
         await userRepo().save(user);
-    } else throw new Error('User not found');
+    }
 };
 
 /** Update a user's username */
@@ -119,5 +130,24 @@ export const updateUsername = async (
     if (user) {
         user.username = username;
         await userRepo().save(user);
-    } else throw new Error('User not found');
+    }
+};
+
+/** Update a user's email */
+export const updateEmail = async (id: string, email: string): Promise<void> => {
+    const user = await getUserById(id);
+    if (user) {
+        user.email = email;
+        await userRepo().save(user);
+    }
+};
+
+/** Get a user's hashed password */
+export const getHashedPassword = async (email: string): Promise<string> => {
+    const res = await userRepo().query(
+        'SELECT password FROM users WHERE email = $1',
+        [email]
+    );
+    if (res.length === 0) return '';
+    return res[0].password;
 };

@@ -8,9 +8,9 @@ const psqlDataSource = new DataSource({
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASS,
     database: 'buddy',
-    synchronize: true,
-    entities: ['src/entities/**/*{.js,.ts}'],
-    migrations: ['src/migrations/**/*{.js,.ts}'],
+    synchronize: false,
+    entities: ['src/entities/**/*.ts'],
+    migrations: ['src/migrations/**/*.ts'],
 });
 
 export default psqlDataSource;
