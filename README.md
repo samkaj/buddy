@@ -5,18 +5,6 @@
 
 Buddy is your goto study web application and my first portfolio project using React and TypeScript.
 
-## Install and run
-
-You need [Node](https://nodejs.org/en/) on your computer to run the app locally.
-
-To run, clone the project and run this in your favorite terminal:
-
-```cmd
-cd pth/to/buddy-frontend
-npm install
-npm run dev
-```
-
 ## Features
 
 -   [ ] Write notes in markdown and parse them to beatiful HTML.
@@ -28,5 +16,4 @@ npm run dev
 ## Structure
 
 -   `web`: React frontend.
--   `server`: MongoDB with Express. Not started.
--   `common`: API used by both server and web. Not started.
+-   `server`: Express REST API backend with Redis and Postgres.
