@@ -1,21 +1,21 @@
-import { newUser } from '../entities/Users';
+import { getUserByEmail, getUserByUsername, newUser } from '../entities/Users';
 import { Router } from 'express';
 export const signupRouter = Router();
 
 import asyncHandler from 'express-async-handler';
-import { isEmailUnique, isUsernameUnique } from '../middleware/verification';
 
 signupRouter.post(
     '/signup',
     asyncHandler(async (req, res): Promise<any> => {
-        const usernameIsUnique = await isUsernameUnique(req.body.username);
+        const usernameIsUnique =
+            (await getUserByUsername(req.body.username)) === null;
         if (!usernameIsUnique) {
             return res
                 .status(400)
                 .send({ message: 'Username already exists!' });
         }
 
-        const emailIsUnique = await isEmailUnique(req.body.email);
+        const emailIsUnique = (await getUserByEmail(req.body.email)) === null;
         if (!emailIsUnique) {
             return res.status(400).send({ message: 'Email already exists!' });
         }
